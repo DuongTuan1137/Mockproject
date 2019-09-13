@@ -15,6 +15,8 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 350
         getApi()
         registerForCell()
         refreshControl = UIRefreshControl()
@@ -50,11 +52,7 @@ class TableViewController: UITableViewController {
         cell.setData(news: arrayNews[indexPath.row])
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
-    }
-    
+
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == arrayNews.count - 1 {
             loadMore()

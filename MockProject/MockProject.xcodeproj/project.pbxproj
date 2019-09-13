@@ -55,6 +55,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A199B0E232B9FE200C7E4B6 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3AF992E62329D16400F5BEE2 /* ViewController.swift */,
+				3AF992EE2329F93900F5BEE2 /* NewsController */,
+				3AF992F02329F97000F5BEE2 /* PopulerController */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
 		3ADFB2702328D0B50004817E = {
 			isa = PBXGroup;
 			children = (
@@ -74,10 +84,8 @@
 		3ADFB27B2328D0B50004817E /* MockProject */ = {
 			isa = PBXGroup;
 			children = (
-				3AF992EE2329F93900F5BEE2 /* NewsController */,
-				3AF992F02329F97000F5BEE2 /* PopulerController */,
+				3A199B0E232B9FE200C7E4B6 /* HomeScreen */,
 				3ADFB27C2328D0B50004817E /* AppDelegate.swift */,
-				3AF992E62329D16400F5BEE2 /* ViewController.swift */,
 				3ADFB2802328D0B50004817E /* Main.storyboard */,
 				3ADFB2832328D0B60004817E /* Assets.xcassets */,
 				3ADFB2852328D0B60004817E /* LaunchScreen.storyboard */,
