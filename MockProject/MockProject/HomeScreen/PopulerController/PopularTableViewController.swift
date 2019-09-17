@@ -74,3 +74,10 @@ class PopularTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "PopularTableViewCell", bundle: nil), forCellReuseIdentifier: "PopularTableViewCell")
     }
 }
+
+extension PopularTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let eventVC = EventsDetailViewController(id: arrayEvents[indexPath.row].id ?? 1)
+        present(eventVC, animated: true, completion: nil)
+    }
+}

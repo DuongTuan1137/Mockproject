@@ -17,7 +17,13 @@ import UIKit
 //    var schedule_closinghour: String?
 //    var schedule_closed: String?
 //}
-
+//struct EventsModel: Codable {
+//    var status: Int
+//    var response: ResEvents
+//}
+//struct ResEvents: Codable {
+//    var events: EventsStruct
+//}
 
 struct EventsStruct: Codable {
     var id: Int?
@@ -36,8 +42,8 @@ struct EventsStruct: Codable {
 //    var schedule_one_day_event: String?
 //    var schedule_extra: String?
     var going_count: Int?
-//    var went_count: Int?
-//    var venua: VenuaStruct
+//    var venua: VenueStr
+//    var category: CategoryStr
 }
 
 struct ResStruct: Codable {
@@ -47,3 +53,10 @@ struct PopularStruct : Codable {
     var status : Int
     var response : ResStruct
 }
+//struct CategoryStr: Codable {
+//    var name: String
+//}
+//struct VenueStr: Codable {
+//    var name: String
+//    var contact_address: String
+//}

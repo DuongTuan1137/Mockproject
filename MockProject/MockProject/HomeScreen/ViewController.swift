@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         addChild(popularVC)
         scrollView.addSubview(popularVC.view)
         popularVC.didMove(toParent: self)
-        popularVC.view.frame = CGRect(x: 414, y: 0, width: 414, height: 706)
+        popularVC.view.frame = CGRect(x: self.view.frame.width, y: 0, width: 414, height: 706)
     }
     
     @IBAction func buttonNews(_ sender: UIButton) {
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         }, completion: nil)
     }
     @IBAction func buttonPopular(_ sender: UIButton) {
-        scrollView.contentOffset.x = 414
+        scrollView.contentOffset.x = view.frame.width
         outletNews.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         outletPopular.setTitleColor(#colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1), for: .normal)
         UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
