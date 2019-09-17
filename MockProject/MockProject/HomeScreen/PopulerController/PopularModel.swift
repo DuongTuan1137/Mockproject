@@ -20,7 +20,7 @@ import UIKit
 
 
 struct EventsStruct: Codable {
-//    var id: Int?
+    var id: Int?
 //    var status: Int?
     var photo: String?
     var name: String?
@@ -30,9 +30,9 @@ struct EventsStruct: Codable {
 //    var schedule_date_warning: String?
 //    var schedule_time_alert: String?
     var schedule_start_date: String?
-    var schedule_start_time: String?
+//    var schedule_start_time: String?
     var schedule_end_date: String?
-    var schedule_end_time: String?
+//    var schedule_end_time: String?
 //    var schedule_one_day_event: String?
 //    var schedule_extra: String?
     var going_count: Int?

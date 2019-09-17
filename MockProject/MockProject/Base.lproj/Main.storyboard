@@ -114,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="1867" y="98"/>
         </scene>
-        <!--Search-->
+        <!--Browse-->
         <scene sceneID="9ep-EK-yPT">
             <objects>
                 <viewController id="794-AN-n4n" sceneMemberID="viewController">
@@ -124,7 +124,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="G7r-4k-ZMC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="yma-WZ-v4M"/>
+                    <tabBarItem key="tabBarItem" title="Browse" id="yma-WZ-v4M"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IK6-eq-zg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

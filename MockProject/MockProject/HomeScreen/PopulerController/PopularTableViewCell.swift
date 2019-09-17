@@ -31,10 +31,20 @@ class PopularTableViewCell: UITableViewCell {
         } catch  {
             print("loi")
         }
+        
+        guard let start = events.schedule_start_date else {return}
+        let currentDate  = Date()
+        let dateFormat = "yyyy-MM-dd"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        guard let startDate = dateFormatter.date(from: start) else {return}
+        if startDate < currentDate {
+            dateEvents.text = events.schedule_start_date! + " - \(String(describing: events.going_count!)) người tham gia"
+        } else {
+            dateEvents.text = events.schedule_end_date! + " - \(String(describing: events.going_count!)) người tham gia"
+        }
         nameEvents.text = events.name
         descriptionEvents.text = events.description_html
-        dateEvents.text = events.schedule_start_date
-
     }
     
 

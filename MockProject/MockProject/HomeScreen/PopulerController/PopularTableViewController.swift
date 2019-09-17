@@ -16,8 +16,9 @@ class PopularTableViewController: UITableViewController {
     }
     
     @objc func refreshData(){
-        arrayEvents.removeLast(arrayEvents.count - pageSize)
+        arrayEvents = []
         pageIndex = 1
+        getApi()
         tableView.reloadData()
         refreshControl?.endRefreshing()
     }
@@ -32,7 +33,9 @@ class PopularTableViewController: UITableViewController {
                     let json = try JSONDecoder().decode(PopularStruct.self, from: data)
                     DispatchQueue.main.async {
                         json.response.events.forEach({ (event) in
-                            self.arrayEvents.append(event)
+                                if event.going_count! > 0 {
+                                   self.arrayEvents.append(event)
+                            }
                         })
                         self.tableView.reloadData()
                     }
@@ -44,13 +47,14 @@ class PopularTableViewController: UITableViewController {
     }
 
     private func loadMore(){
-        pageIndex += 1
-        getApi()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.pageIndex += 1
+            self.getApi()
+        }
     }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return arrayEvents.count
     }
     

@@ -34,10 +34,13 @@ class TableViewController: UITableViewController {
                     json.response.news.forEach({ (news) in
                         self.arrayNews.append(news)
                     })
+                    self.arrayNews.sort(by: { (a, b) -> Bool in
+                        a.publish_date > b.publish_date
+                    })
                     self.tableView.reloadData()
                 }
-            } catch{
-                print("loi")
+            } catch let err {
+                print("error Decode", err.localizedDescription)
             }
         }.resume()
     }
@@ -67,13 +70,20 @@ class TableViewController: UITableViewController {
     }
     
     @objc func refreshData(){
-        arrayNews.removeLast(arrayNews.count - pageSize)
+        arrayNews = []
         pageIndex = 1
+        getApi()
         tableView.reloadData()
         refreshControl?.endRefreshing()
     }
     
     private func registerForCell(){
         self.tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
+    }
+}
+extension TableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let infoVC = InfoNewsViewController(link: arrayNews[indexPath.row].detail_url)
+        present(infoVC, animated: true, completion: nil)
     }
 }
