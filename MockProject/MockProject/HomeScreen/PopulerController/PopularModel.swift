@@ -53,10 +53,4 @@ struct PopularStruct : Codable {
     var status : Int
     var response : ResStruct
 }
-//struct CategoryStr: Codable {
-//    var name: String
-//}
-//struct VenueStr: Codable {
-//    var name: String
-//    var contact_address: String
-//}
+

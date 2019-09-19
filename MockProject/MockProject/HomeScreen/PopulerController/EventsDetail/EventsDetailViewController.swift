@@ -7,9 +7,23 @@
 //
 
 import UIKit
+extension UIView {
+    func constraintToAllSides(of container: UIView) {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            topAnchor.constraint(equalTo: container.topAnchor),
+            bottomAnchor.constraint(equalTo: container.bottomAnchor)
+            ])
+    }
+}
 
 class EventsDetailViewController: UIViewController {
     @IBOutlet weak var navi: UINavigationBar!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageEvents: UIImageView!
     @IBOutlet weak var labelAddress: UILabel!
     @IBOutlet weak var lableNameEvent: UILabel!
@@ -27,9 +41,19 @@ class EventsDetailViewController: UIViewController {
     var blurEffectView = UIVisualEffectView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.delegate = self
         getApi()
         setStatusLabelDescription()
     }
+    
+    func addSubViewForViewNearByEvents(){
+       let NearEventVC = NearByEventsVC(latitude: events?.venue.geo_lat ?? "1", longitude: events?.venue.geo_long ?? "1")
+        addChild(NearEventVC)
+        viewNearBy.addSubview(NearEventVC.view)
+        NearEventVC.view.constraintToAllSides(of: viewNearBy)
+        NearEventVC.didMove(toParent: self)
+    }
+    
     
     func getApi() {
         let api = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/getDetailEvent?event_id=\(id)"
@@ -42,6 +66,8 @@ class EventsDetailViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.events = json.response.events
                         self.setupData(events: self.events!)
+                        self.addSubViewForViewNearByEvents()
+
                     }
                 } catch let err {
                     print("error Decode", err.localizedDescription)
@@ -110,6 +136,7 @@ class EventsDetailViewController: UIViewController {
     }
 
     @IBAction func followButton(_ sender: UIButton) {
+
     }
     
     @IBAction func closeButton(_ sender: UIButton) {
@@ -131,4 +158,18 @@ class EventsDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+extension EventsDetailViewController: UIScrollViewDelegate {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let heightImg = imageEvents.frame.height
+        scrollView.contentInset = UIEdgeInsets(top: heightImg , left: 0, bottom: 0, right: 0)
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offSetY = scrollView.contentOffset.y
+        if offSetY < 0 {
+            imageEvents.frame.size.height = -offSetY
+            stackView.frame.origin.y = UIApplication.shared.statusBarFrame.height + 54 + imageEvents.frame.size.height
+        }
+    }
 }
