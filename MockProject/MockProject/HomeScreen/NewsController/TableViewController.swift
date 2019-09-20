@@ -25,24 +25,17 @@ class TableViewController: UITableViewController {
     
     private func getApi(){
         let api = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNews?pageIndex=\(pageIndex)&pageSize=\(pageSize)"
-        guard let url = URL(string: api) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else {return}
-            do{
-                let json = try JSONDecoder().decode(JsonStruct.self, from: data)
-                DispatchQueue.main.async {
-                    json.response.news.forEach({ (news) in
-                        self.arrayNews.append(news)
-                    })
-                    self.arrayNews.sort(by: { (a, b) -> Bool in
-                        a.publish_date > b.publish_date
-                    })
-                    self.tableView.reloadData()
-                }
-            } catch let err {
-                print("error Decode", err.localizedDescription)
+        getGenericData(urlString: api) { (json: JsonStruct ) in
+            DispatchQueue.main.async {
+                json.response.news.forEach({ (news) in
+                    self.arrayNews.append(news)
+                })
+                self.arrayNews.sort(by: { (a, b) -> Bool in
+                    a.publish_date > b.publish_date
+                })
+                self.tableView.reloadData()
             }
-        }.resume()
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

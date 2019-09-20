@@ -1,14 +1,14 @@
 //
-//  SignUpVC.swift
+//  ForgotPasswordVC.swift
 //  MockProject
 //
-//  Created by AnhDCT on 9/19/19.
+//  Created by AnhDCT on 9/20/19.
 //  Copyright © 2019 AnhDCT. All rights reserved.
 //
 
 import UIKit
 
-class SignUpVC: UIViewController {
+class ForgotPasswordVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

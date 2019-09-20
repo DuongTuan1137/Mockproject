@@ -8,7 +8,7 @@ class PopularTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 366
+        tableView.estimatedRowHeight = 300
         getApi()
         registerForCell()
         refreshControl = UIRefreshControl()
@@ -25,25 +25,16 @@ class PopularTableViewController: UITableViewController {
     
     private func getApi(){
         let api = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listPopularEvents?pageIndex=\(pageIndex)&pageSize=\(pageSize)"
-        guard let url = URL(string:api) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else {return}
-            if error == nil {
-                do{
-                    let json = try JSONDecoder().decode(PopularStruct.self, from: data)
-                    DispatchQueue.main.async {
-                        json.response.events.forEach({ (event) in
-                                if event.going_count! > 0 {
-                                   self.arrayEvents.append(event)
-                            }
-                        })
-                        self.tableView.reloadData()
+        getGenericData(urlString: api) { (json: PopularStruct) in
+            DispatchQueue.main.async {
+                json.response.events.forEach({ (event) in
+                    if event.going_count! > 0 {
+                        self.arrayEvents.append(event)
                     }
-                } catch let err {
-                print("error Decode", err.localizedDescription)
-                }
+                })
+                self.tableView.reloadData()
             }
-        }.resume()
+        }
     }
 
     private func loadMore(){

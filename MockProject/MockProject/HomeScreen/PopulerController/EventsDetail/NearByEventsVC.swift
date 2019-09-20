@@ -23,21 +23,12 @@ class NearByEventsVC: UICollectionViewController,UICollectionViewDelegateFlowLay
 
     private func getApi(){
         let api = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNearlyEvents?radius=5000&latitude=\(latitude)&longitue=\(longitude)"
-        guard let url = URL(string:api) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else {return}
-            if error == nil {
-                do{
-                    let json = try JSONDecoder().decode(PopularStruct.self, from: data)
-                    DispatchQueue.main.async {
-                        self.eventsNear = json.response.events
-                        self.collectionView.reloadData()
-                    }
-                } catch let err {
-                    print("error Decode", err.localizedDescription)
-                }
+        getGenericData(urlString: api) { (json: PopularStruct) in
+            DispatchQueue.main.async {
+                self.eventsNear = json.response.events
+                self.collectionView.reloadData()
             }
-        }.resume()
+        }
     }
 
 

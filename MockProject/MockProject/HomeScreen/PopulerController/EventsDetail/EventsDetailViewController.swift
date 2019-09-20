@@ -57,23 +57,14 @@ class EventsDetailViewController: UIViewController {
     
     func getApi() {
         let api = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/getDetailEvent?event_id=\(id)"
-        guard let url = URL(string:api) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else {return}
-            if error == nil {
-                do{
-                    let json = try JSONDecoder().decode(EventsModel.self, from: data)
-                    DispatchQueue.main.async {
-                        self.events = json.response.events
-                        self.setupData(events: self.events!)
-                        self.addSubViewForViewNearByEvents()
-
-                    }
-                } catch let err {
-                    print("error Decode", err.localizedDescription)
-                }
+        getGenericData(urlString: api) { (json: EventsModel) in
+            DispatchQueue.main.async {
+                self.events = json.response.events
+                self.setupData(events: self.events!)
+                self.addSubViewForViewNearByEvents()
+                
             }
-            }.resume()
+        }
     }
     
     func setupData(events: EventsStr){

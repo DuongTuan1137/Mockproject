@@ -12,9 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-   
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let tabBar = TabBarVC()
+        self.window?.rootViewController = tabBar
+        self.window?.makeKeyAndVisible()
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Arial", size: 18)!], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.4779872894, green: 0.5049561262, blue: 0.9993677735, alpha: 1)], for: .selected)
+        
+        
         // Override point for customization after application launch.
         return true
     }

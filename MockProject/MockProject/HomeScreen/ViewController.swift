@@ -30,18 +30,18 @@ class ViewController: UIViewController {
         addChild(newsVC)
         scrollView.addSubview(newsVC.view)
         newsVC.didMove(toParent: self)
-        newsVC.view.frame = CGRect(x: 0, y: 0, width: 414, height: 706)
+        newsVC.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: scrollView.frame.height)
         let popularVC = PopularTableViewController(nibName: "PopularTableViewController", bundle: nil)
         addChild(popularVC)
         scrollView.addSubview(popularVC.view)
         popularVC.didMove(toParent: self)
-        popularVC.view.frame = CGRect(x: self.view.frame.width, y: 0, width: 414, height: 706)
+        popularVC.view.frame = CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: scrollView.frame.height)
     }
     
     @IBAction func buttonNews(_ sender: UIButton) {
         scrollView.contentOffset.x = 0
         outletNews.setTitleColor(#colorLiteral(red: 0.4779872894, green: 0.5049561262, blue: 0.9993677735, alpha: 1), for: .normal)
-        outletPopular.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        outletPopular.setTitleColor( #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
             self.view1.transform = .identity
         }, completion: nil)

@@ -35,6 +35,7 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ov-ds-DbJ">
                     <rect key="frame" x="0.0" y="44" width="383" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </navigationBar>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8qp-51-fCc">
                     <rect key="frame" x="0.0" y="88" width="383" height="204"/>
@@ -42,9 +43,13 @@
                         <constraint firstAttribute="height" constant="204" id="2n0-xg-gD2"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR1-Yh-CKf">
-                    <rect key="frame" x="8" y="51" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR1-Yh-CKf">
+                    <rect key="frame" x="8" y="46" width="30" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="PQM-cl-FN3"/>
+                        <constraint firstAttribute="height" constant="35" id="Tu1-8e-1d1"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="down"/>
                     <connections>
                         <action selector="closeButton:" destination="-1" eventType="touchUpInside" id="PvQ-0s-TBA"/>
                     </connections>
@@ -304,6 +309,7 @@
                 <constraint firstItem="qyo-kD-Wpb" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="BVB-L7-e8J"/>
                 <constraint firstItem="n7N-J6-sLG" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="C4L-dA-vOk"/>
                 <constraint firstAttribute="bottom" secondItem="9A3-tH-Zvg" secondAttribute="bottom" id="G1h-TY-aca"/>
+                <constraint firstItem="8qp-51-fCc" firstAttribute="top" secondItem="mR1-Yh-CKf" secondAttribute="bottom" constant="7" id="OvZ-H8-9Kr"/>
                 <constraint firstItem="9A3-tH-Zvg" firstAttribute="leading" secondItem="n7N-J6-sLG" secondAttribute="trailing" id="T2c-O6-QlW"/>
                 <constraint firstItem="4Ov-ds-DbJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Tzw-Hl-pM1"/>
                 <constraint firstItem="mR1-Yh-CKf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="Vzn-3x-g85"/>
@@ -314,7 +320,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PNu-QT-5nY" secondAttribute="trailing" constant="10" id="eZm-I9-KIY"/>
                 <constraint firstAttribute="trailing" secondItem="9A3-tH-Zvg" secondAttribute="trailing" id="g9G-wy-mEK"/>
                 <constraint firstItem="8qp-51-fCc" firstAttribute="top" secondItem="4Ov-ds-DbJ" secondAttribute="bottom" id="kQa-hw-gLj"/>
-                <constraint firstItem="mR1-Yh-CKf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="7" id="lMs-RN-dcE"/>
                 <constraint firstItem="2P1-qD-olL" firstAttribute="top" secondItem="4Ov-ds-DbJ" secondAttribute="bottom" constant="110" id="opq-ev-Bpp"/>
                 <constraint firstItem="PNu-QT-5nY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="osB-lD-7FN"/>
                 <constraint firstItem="4Ov-ds-DbJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="sBi-lz-IPu"/>
@@ -327,4 +332,7 @@
             <point key="canvasLocation" x="-167.39130434782609" y="258.48214285714283"/>
         </view>
     </objects>
+    <resources>
+        <image name="down" width="64" height="64"/>
+    </resources>
 </document>
