@@ -31,7 +31,8 @@ class TabBarVC: UITabBarController {
         naviBrowse.tabBarItem.title = "Browse"
         naviMyPage.tabBarItem.title = "My Page"
         meVC.tabBarItem.title = "Me"
-        if User.user.login == false {
+        
+        if User.instance.login == false {
             viewControllers = [homeVC, nearVC, naviBrowse, naviMyPage]
         } else {
             viewControllers = [homeVC, nearVC, naviBrowse, meVC]

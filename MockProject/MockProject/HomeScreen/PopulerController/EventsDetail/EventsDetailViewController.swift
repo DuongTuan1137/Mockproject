@@ -34,6 +34,9 @@ class EventsDetailViewController: UIViewController {
     @IBOutlet weak var labelLocation: UILabel!
     @IBOutlet weak var labelContact: UILabel!
    
+    @IBOutlet weak var viewWentButton: UIButton!
+    @IBOutlet weak var viewGoingButton: UIButton!
+    @IBOutlet weak var viewFollowButton: UIButton!
     @IBOutlet weak var viewNearBy: UIView!
     
     var id : Int
@@ -56,13 +59,13 @@ class EventsDetailViewController: UIViewController {
     
     
     func getApi() {
-        let api = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/getDetailEvent?event_id=\(id)"
+        let api = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/getDetailEvent?token=\(User.instance.token ?? "")&event_id=\(id)"
         getGenericData(urlString: api) { (json: EventsModel) in
             DispatchQueue.main.async {
                 self.events = json.response.events
                 self.setupData(events: self.events!)
                 self.addSubViewForViewNearByEvents()
-                
+                self.setupViewButton(events: json)
             }
         }
     }
@@ -113,6 +116,37 @@ class EventsDetailViewController: UIViewController {
         let pan = UITapGestureRecognizer(target: self, action: #selector(swapLine))
         labelDescription.addGestureRecognizer(pan)
     }
+    
+    private func alert(title : String, message : String){
+        let a = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        a.addAction(cancel)
+        present(a, animated: true, completion: nil)
+    }
+    
+    private func setupViewButton(events : EventsModel){
+        viewFollowButton.layer.cornerRadius = 5
+        if User.instance.login == false {
+            viewGoingButton.backgroundColor = .white
+            viewWentButton.backgroundColor = .white
+        } else {
+            switch events.response.events.my_status {
+            case 1:
+                viewGoingButton.backgroundColor = .red
+                viewGoingButton.isEnabled = false
+                viewWentButton.backgroundColor = .white
+            case 2:
+                viewWentButton.backgroundColor = .yellow
+                viewWentButton.isEnabled = false
+                viewGoingButton.backgroundColor = .white
+            default:
+                viewGoingButton.backgroundColor = .white
+                viewWentButton.backgroundColor = .white
+
+            }
+        }
+    }
+    
     @objc func swapLine() {
         switch labelDescription.numberOfLines {
         case 4:
@@ -127,7 +161,21 @@ class EventsDetailViewController: UIViewController {
     }
 
     @IBAction func followButton(_ sender: UIButton) {
-
+        if User.instance.login == false {
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
+            present(loginVC, animated: true, completion: nil)
+        } else{
+            let urlString = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doFollowVenue"
+            postGenericData(urlString: urlString, parameters: ["token": User.instance.token, "venue_id": events?.id]) { (json: ResponseSample) in
+                DispatchQueue.main.async {
+                    if json.status == 1 {
+                        self.viewFollowButton.titleLabel?.text = "Followed"
+                    } else {
+                        self.alert(title: "Error", message: json.error_message ?? "a")
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func closeButton(_ sender: UIButton) {
@@ -135,9 +183,39 @@ class EventsDetailViewController: UIViewController {
     }
    
     @IBAction func goingButton(_ sender: UIButton) {
+        if User.instance.login == false {
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
+            present(loginVC, animated: true, completion: nil)
+        } else{
+            let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doUpdateEvent"
+            postGenericData(urlString: url, parameters: ["token": User.instance.token, "status": 1, "event_id": events?.id]) { (json: ResponseSample) in
+                DispatchQueue.main.async {
+                    self.viewGoingButton.backgroundColor = .red
+                    self.viewGoingButton.isEnabled = false
+                    self.viewWentButton.backgroundColor = .white
+                    self.viewWentButton.isEnabled = true
+                }
+            }
+        }
+        
     }
     
     @IBAction func wentButton(_ sender: UIButton) {
+        if User.instance.login == false {
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
+            present(loginVC, animated: true, completion: nil)
+        } else{
+            let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doUpdateEvent"
+            postGenericData(urlString: url, parameters: ["token": User.instance.token, "status": 2, "event_id": events?.id]) { (json: ResponseSample) in
+                DispatchQueue.main.async {
+                    self.viewWentButton.backgroundColor = .yellow
+                    self.viewWentButton.isEnabled = false
+                    self.viewGoingButton.backgroundColor = .white
+                    self.viewGoingButton.isEnabled = true
+                }
+                
+            }
+        }
     }
     
     init(id: Int) {

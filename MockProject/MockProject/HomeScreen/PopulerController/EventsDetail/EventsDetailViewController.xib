@@ -25,7 +25,10 @@
                 <outlet property="scrollView" destination="2P1-qD-olL" id="SkU-FU-TvQ"/>
                 <outlet property="stackView" destination="PNu-QT-5nY" id="X68-lQ-HE4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewFollowButton" destination="pj4-FP-AwD" id="YsH-Cm-Jg6"/>
+                <outlet property="viewGoingButton" destination="n7N-J6-sLG" id="Lju-wP-RZX"/>
                 <outlet property="viewNearBy" destination="Tei-MS-pnR" id="Edq-VZ-SJ3"/>
+                <outlet property="viewWentButton" destination="9A3-tH-Zvg" id="w79-Pe-djH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -70,7 +73,7 @@
                     <color key="backgroundColor" red="0.48264241219999998" green="0.55111807580000005" blue="0.57468533519999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="I'm Went">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleColor" red="0.48264241219999998" green="0.55111807580000005" blue="0.57468533519999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="wentButton:" destination="-1" eventType="touchUpInside" id="VGV-fE-97h"/>
@@ -85,7 +88,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvm-rN-ibW">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvm-rN-ibW">
                             <rect key="frame" x="0.0" y="40" width="363" height="24"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                             <nil key="textColor"/>
@@ -106,7 +109,7 @@
                     </constraints>
                 </stackView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2P1-qD-olL">
-                    <rect key="frame" x="0.0" y="198" width="383" height="672"/>
+                    <rect key="frame" x="0.0" y="198" width="383" height="676"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qyo-kD-Wpb">
                             <rect key="frame" x="0.0" y="0.0" width="383" height="649"/>
@@ -306,6 +309,7 @@
             <constraints>
                 <constraint firstItem="4Ov-ds-DbJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4cM-s0-6wJ"/>
                 <constraint firstItem="8qp-51-fCc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5Jt-Al-BvB"/>
+                <constraint firstItem="n7N-J6-sLG" firstAttribute="top" secondItem="2P1-qD-olL" secondAttribute="bottom" id="5rY-Qn-Ffq"/>
                 <constraint firstItem="qyo-kD-Wpb" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="BVB-L7-e8J"/>
                 <constraint firstItem="n7N-J6-sLG" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="C4L-dA-vOk"/>
                 <constraint firstAttribute="bottom" secondItem="9A3-tH-Zvg" secondAttribute="bottom" id="G1h-TY-aca"/>
@@ -316,6 +320,7 @@
                 <constraint firstAttribute="bottom" secondItem="n7N-J6-sLG" secondAttribute="bottom" id="XWP-uc-6cD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2P1-qD-olL" secondAttribute="trailing" id="Xaz-Tw-qo8"/>
                 <constraint firstItem="2P1-qD-olL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bRa-Sl-Syj"/>
+                <constraint firstItem="9A3-tH-Zvg" firstAttribute="top" secondItem="2P1-qD-olL" secondAttribute="bottom" id="cBI-xt-bFa"/>
                 <constraint firstItem="n7N-J6-sLG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="czi-ar-UmZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PNu-QT-5nY" secondAttribute="trailing" constant="10" id="eZm-I9-KIY"/>
                 <constraint firstAttribute="trailing" secondItem="9A3-tH-Zvg" secondAttribute="trailing" id="g9G-wy-mEK"/>
@@ -325,7 +330,6 @@
                 <constraint firstItem="4Ov-ds-DbJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="sBi-lz-IPu"/>
                 <constraint firstItem="8qp-51-fCc" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="uFn-bv-y0Y"/>
                 <constraint firstItem="PNu-QT-5nY" firstAttribute="top" secondItem="8qp-51-fCc" secondAttribute="bottom" constant="10" id="xoV-bB-xZV"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2P1-qD-olL" secondAttribute="bottom" id="zi3-TS-AiE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

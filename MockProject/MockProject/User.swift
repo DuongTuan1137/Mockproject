@@ -8,7 +8,7 @@
 
 import Foundation
 class User {
-    static let user = User()
+    static let instance = User()
     var login = false
     var token : String?
 }

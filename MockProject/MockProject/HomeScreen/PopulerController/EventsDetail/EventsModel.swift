@@ -18,12 +18,14 @@ struct VenueStr: Codable {
 }
 struct EventsStr: Codable {
     var id: Int?
+    var status: Int?
     var photo: String?
     var name: String?
     var artist: String?
     var description_html: String?
     var schedule_start_date: String?
     var schedule_end_date: String?
+    var my_status: Int?
     var going_count: Int?
     var venue: VenueStr
     var category: CategoryStr

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-func postGenericData<T: Decodable> (urlString: String, parameters:[String: String?], completion: @escaping (T) -> ()) {
+func postGenericData<T: Decodable> (urlString: String, parameters:[String: Any?], completion: @escaping (T) -> ()) {
     guard let url = URL(string: urlString) else { return }
     var request = URLRequest(url: url)
     request.httpMethod = "POST"

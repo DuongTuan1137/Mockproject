@@ -33,6 +33,8 @@
 		3AF992F72329F9B100F5BEE2 /* PopularTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF992F52329F9B100F5BEE2 /* PopularTableViewCell.swift */; };
 		3AF992F82329F9B100F5BEE2 /* PopularTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF992F62329F9B100F5BEE2 /* PopularTableViewCell.xib */; };
 		3AF992FA2329FD6A00F5BEE2 /* PopularModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF992F92329FD6A00F5BEE2 /* PopularModel.swift */; };
+		3AF9ED432338C59D00B06DA6 /* BrowseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9ED422338C59D00B06DA6 /* BrowseTableViewCell.swift */; };
+		3AF9ED452338C7FB00B06DA6 /* BrowseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9ED442338C7FB00B06DA6 /* BrowseModel.swift */; };
 		3AFC53A0233461090066485B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC539F233461090066485B /* User.swift */; };
 		3AFC53A4233467290066485B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC53A3233467290066485B /* LoginVC.swift */; };
 		3AFC53A6233467D20066485B /* MeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC53A5233467D20066485B /* MeVC.swift */; };
@@ -74,6 +76,8 @@
 		3AF992F52329F9B100F5BEE2 /* PopularTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularTableViewCell.swift; sourceTree = "<group>"; };
 		3AF992F62329F9B100F5BEE2 /* PopularTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularTableViewCell.xib; sourceTree = "<group>"; };
 		3AF992F92329FD6A00F5BEE2 /* PopularModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopularModel.swift; path = ../HomeScreen/PopulerController/PopularModel.swift; sourceTree = "<group>"; };
+		3AF9ED422338C59D00B06DA6 /* BrowseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableViewCell.swift; sourceTree = "<group>"; };
+		3AF9ED442338C7FB00B06DA6 /* BrowseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseModel.swift; sourceTree = "<group>"; };
 		3AFC539F233461090066485B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AFC53A3233467290066485B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3AFC53A5233467D20066485B /* MeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeVC.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				3A34C4D02333892C006059AC /* BrowseVC.swift */,
+				3AF9ED422338C59D00B06DA6 /* BrowseTableViewCell.swift */,
 			);
 			path = BrowseScreen;
 			sourceTree = "<group>";
@@ -178,8 +183,8 @@
 		3ADFB27B2328D0B50004817E /* MockProject */ = {
 			isa = PBXGroup;
 			children = (
-				3AAA75DC2334C8E700443BE4 /* Call Api */,
 				3AFC539F233461090066485B /* User.swift */,
+				3AAA75DC2334C8E700443BE4 /* Call Api */,
 				3A34C4D823338C1E006059AC /* TabBar */,
 				3A34C4CF233388DA006059AC /* BrowseScreen */,
 				3A34C4CE233388C0006059AC /* NearScreen */,
@@ -244,6 +249,7 @@
 				3AF992F92329FD6A00F5BEE2 /* PopularModel.swift */,
 				3AFC748F2330BDD600ADE4E0 /* EventsModel.swift */,
 				3AAA75D62334B70A00443BE4 /* PostModel.swift */,
+				3AF9ED442338C7FB00B06DA6 /* BrowseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 				3AFC53A6233467D20066485B /* MeVC.swift in Sources */,
 				3AF992E82329D16400F5BEE2 /* ViewController.swift in Sources */,
 				3AF716CD232F6F3900C24E7E /* InfoNewsViewController.swift in Sources */,
+				3AF9ED452338C7FB00B06DA6 /* BrowseModel.swift in Sources */,
 				3AFC64BD2331C1F600D8B705 /* CellNearByEvents.swift in Sources */,
 				3A34C4DA23338CC8006059AC /* TabBarVC.swift in Sources */,
 				3AFC748B23306EF700ADE4E0 /* EventsDetailViewController.swift in Sources */,
@@ -369,6 +376,7 @@
 				3AFC64B52331C01200D8B705 /* NearByEventsVC.swift in Sources */,
 				3A34C4CD233381D7006059AC /* SignUpVC.swift in Sources */,
 				3AAA75D92334BBFA00443BE4 /* PostApi.swift in Sources */,
+				3AF9ED432338C59D00B06DA6 /* BrowseTableViewCell.swift in Sources */,
 				3A34C4D12333892C006059AC /* BrowseVC.swift in Sources */,
 				3ADFB29F2328FAE60004817E /* NewModel.swift in Sources */,
 				3AAA75DB2334C3CA00443BE4 /* GetApi.swift in Sources */,

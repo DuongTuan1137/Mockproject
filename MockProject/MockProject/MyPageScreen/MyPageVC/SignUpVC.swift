@@ -72,12 +72,13 @@ class SignUpVC: UIViewController,UITextFieldDelegate {
         postGenericData(urlString: url, parameters: ["name" : nameTF.text, "email" : emailTF.text, "password": passwordTF.text]) { (json: ResponseSample) in
             DispatchQueue.main.async {
                 if json.status == 1 {
-                    User.user.token = json.response?.token
-                    User.user.login = true
-//                    let meVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MeVC")
-//                    self.navigationController?.pushViewController(meVC, animated: true)
-                    TabBarVC.instance.setTabBar()
-                    self.tabBarController?.selectedIndex = 3
+                    User.instance.token = json.response?.token
+                    User.instance.login = true
+                    guard let window = UIApplication.shared.keyWindow else {
+                        return
+                    }
+                    window.rootViewController = TabBarVC.instance
+                    TabBarVC.instance.selectedIndex = 3
                 } else {
                     self.alert(message: json.error_message ?? "Can not sign up, pleas try again")
                 }

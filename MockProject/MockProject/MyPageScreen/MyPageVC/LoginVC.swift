@@ -60,7 +60,11 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func backtoSignUpVC(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        if navigationController == nil {
+            dismiss(animated: true, completion: nil)
+        } else {
+            navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
@@ -68,10 +72,13 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         postGenericData(urlString: url, parameters: ["email" : emailTF.text, "password": passTF.text]) { (json: ResponseSample) in
             DispatchQueue.main.async {
                 if json.status == 1 {
-                    User.user.token = json.response?.token
-                    User.user.login = true
-                    let meVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MeVC")
-                    self.present(meVC, animated: true, completion: nil)
+                    User.instance.token = json.response?.token
+                    User.instance.login = true
+                    guard let window = UIApplication.shared.keyWindow else {
+                        return
+                    }
+                    window.rootViewController = TabBarVC.instance
+                    TabBarVC.instance.selectedIndex = 3
                 } else {
                     self.alert(message: json.error_message ?? "Can not sign up, pleas try again")
                 }
