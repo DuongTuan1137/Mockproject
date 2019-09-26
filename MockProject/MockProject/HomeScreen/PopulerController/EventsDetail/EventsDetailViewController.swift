@@ -104,7 +104,7 @@ class EventsDetailViewController: UIViewController {
         labelDescription.addSubview(blurEffectView)
         labelDescription.sendSubviewToBack(blurEffectView)
         blurEffectView.frame = CGRect(x: labelDescription.bounds.minX, y: labelDescription.bounds.maxY * 2, width: labelDescription.bounds.width, height: labelDescription.bounds.height/2)
-        
+
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     

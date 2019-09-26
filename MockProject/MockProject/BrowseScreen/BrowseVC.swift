@@ -29,6 +29,8 @@ class BrowseVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     }
     
     @IBAction func searchButton(_ sender: UIButton) {
+        let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchVC")
+        navigationController?.pushViewController(searchVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,15 +47,11 @@ class BrowseVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         return 60
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let categoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsByCategoryVC") as! EventsByCategoryVC
+        categoryVC.categoryId = categories[indexPath.row].id
+        navigationController?.pushViewController(categoryVC, animated: true)
     }
-    */
+    
 
 }
