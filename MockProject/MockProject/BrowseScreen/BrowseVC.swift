@@ -50,6 +50,7 @@ class BrowseVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsByCategoryVC") as! EventsByCategoryVC
         categoryVC.categoryId = categories[indexPath.row].id
+        categoryVC.titleCategory = categories[indexPath.row].name
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     

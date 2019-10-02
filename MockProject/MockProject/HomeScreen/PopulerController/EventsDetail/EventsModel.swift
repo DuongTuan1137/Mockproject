@@ -13,8 +13,8 @@ struct CategoryStr: Codable {
 struct VenueStr: Codable {
     var name: String
     var contact_address: String
-    var geo_long: String?
-    var geo_lat: String?
+    var geo_long: String
+    var geo_lat: String
 }
 struct EventsStr: Codable {
     var id: Int?

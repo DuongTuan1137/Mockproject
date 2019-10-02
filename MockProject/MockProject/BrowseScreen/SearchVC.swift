@@ -19,29 +19,10 @@ class SearchVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForCell()
+        getApi(searchTF)
         tabBarController?.tabBar.isHidden = true
     }
     
-    @IBAction func backButton(_ sender: UIButton) {
-        tabBarController?.tabBar.isHidden = false
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func deleteButton(_ sender: UIButton) {
-        searchTF.text = ""
-    }
-    
-    @IBAction func segAction(_ sender: UISegmentedControl) {
-        tableview.reloadData()
-    }
-    
-    private func registerForCell(){
-        tableview.register(UINib(nibName: "PopularTableViewCell", bundle: nil), forCellReuseIdentifier: "PopularTableViewCell")
-    }
-
-}
-
-extension SearchVC: UITextFieldDelegate {
     fileprivate func getApi(_ textField: UITextField) {
         let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/search?token=\(User.instance.token ?? "" )&keyword=\(textField.text ?? "")&pageIndex=\(pageIndex)&pageSize=20"
         getGenericData(urlString: url) { (json: PopularStruct) in
@@ -71,6 +52,28 @@ extension SearchVC: UITextFieldDelegate {
             }
         }
     }
+    
+    @IBAction func backButton(_ sender: UIButton) {
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func deleteButton(_ sender: UIButton) {
+        searchTF.text = ""
+    }
+    
+    @IBAction func segAction(_ sender: UISegmentedControl) {
+        tableview.reloadData()
+    }
+    
+    private func registerForCell(){
+        tableview.register(UINib(nibName: "PopularTableViewCell", bundle: nil), forCellReuseIdentifier: "PopularTableViewCell")
+    }
+
+}
+
+extension SearchVC: UITextFieldDelegate {
+ 
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         getApi(textField)

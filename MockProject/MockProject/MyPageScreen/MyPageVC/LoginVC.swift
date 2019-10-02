@@ -74,6 +74,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                 if json.status == 1 {
                     User.instance.token = json.response?.token
                     User.instance.login = true
+                    print(json.response?.token)
                     guard let window = UIApplication.shared.keyWindow else {
                         return
                     }

@@ -1,17 +1,17 @@
 //
-//  EventsCategoryByDate.swift
+//  MyGoingVC.swift
 //  MockProject
 //
-//  Created by AnhDCT on 9/24/19.
+//  Created by AnhDCT on 9/29/19.
 //  Copyright © 2019 AnhDCT. All rights reserved.
 //
 
 import UIKit
 
-class EventsCategoryByDate: UITableViewController {
-    var id : Int
+class MyGoingVC: UITableViewController {
+    let status = 1
+    var arrGoing = [[EventsStruct]]()
     var count = [EventsStruct]()
-    var arrData = [[EventsStruct]]()
     var arrSection = ["Ends Today", "Ends Tomorrow", "Ends At The Week", "Ends At The Next Weeek", "Ends At The End Of The Months", "Ends From The Next Month And Later", "No Deadline Or Ended"]
     var arrForever = [EventsStruct]()
     var arrNextMonth = [EventsStruct]()
@@ -20,21 +20,18 @@ class EventsCategoryByDate: UITableViewController {
     var arrInWeek = [EventsStruct]()
     var arrTomorrow = [EventsStruct]()
     var arrToday = [EventsStruct]()
-    var pageSize = 10
-    var pageIndex = 1
-    var number: ((Int) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(scrolToTop), name: NSNotification.Name(rawValue: "TG"), object: nil)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 300
-        arrData = [arrToday, arrTomorrow, arrInWeek, arrNextWeek, arrInMonth, arrNextMonth, arrForever]
+        arrGoing = [arrToday, arrTomorrow, arrInWeek, arrNextWeek, arrInMonth, arrNextMonth, arrForever]
         registerForCell()
-        getApi()
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+
     }
     
-    @objc func refreshData(){
+    override func viewDidDisappear(_ animated: Bool) {
         arrToday.removeAll()
         arrTomorrow.removeAll()
         arrInWeek.removeAll()
@@ -42,38 +39,35 @@ class EventsCategoryByDate: UITableViewController {
         arrInMonth.removeAll()
         arrNextMonth.removeAll()
         arrForever.removeAll()
-        count.removeAll()
-        pageIndex = 1
+    }
+    override func viewDidAppear(_ animated: Bool) {
         getApi()
-        tableView.reloadData()
-        refreshControl?.endRefreshing()
     }
     
-    func getApi() {
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listEventsByCategory?token=\(User.instance.token ?? "")&category_id=\(id)&pageSize=\(pageSize)&pageIndex=\(pageIndex)"
-//
+    @objc func scrolToTop(){
+        UIView.animate(withDuration: 0.2) {
+            self.tableView.contentOffset.y = 0
+        }
+    }
+    
+    func getApi(){
+        let url = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listMyEvents?status=\(status)&token=\(User.instance.token ?? "")"
         getGenericData(urlString: url) { (json: PopularStruct) in
-            DispatchQueue.main.async {
-                json.response.events.forEach({ (event) in
-                   self.setupData(event: event)
-                    self.count.append(event)
+            json.response.events.forEach({ (event) in
+                self.setupData(event: event)
+            })
+            self.arrGoing = [self.arrToday, self.arrTomorrow, self.arrInWeek, self.arrNextWeek, self.arrInMonth, self.arrNextMonth, self.arrForever]
+            for i in 0 ..< self.arrGoing.count {
+                self.arrGoing[i].sort(by: { (a, b) -> Bool in
+                    a.schedule_end_date! < b.schedule_end_date!
                 })
-                
-                self.arrData = [self.arrToday, self.arrTomorrow, self.arrInWeek, self.arrNextWeek, self.arrInMonth, self.arrNextMonth, self.arrForever]
-                
-                self.number?(self.count.count)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Date"), object: self, userInfo: ["T" : self.count.count])
-                self.tableView.reloadData()
+            }
+            DispatchQueue.main.async {
+                 self.tableView.reloadData()
             }
         }
     }
     
-    private func loadMore(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.pageIndex += 1
-            self.getApi()
-        }
-   }
     
     private func setupData(event:EventsStruct){
         guard let end = event.schedule_end_date else {
@@ -138,24 +132,22 @@ class EventsCategoryByDate: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return arrSection.count
+        return arrGoing.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrData[section].count
+       
+        return arrGoing[section].count
     }
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PopularTableViewCell", for: indexPath) as! PopularTableViewCell
-
-        cell.setupData(events: arrData[indexPath.section][indexPath.row])
+        
+        cell.setupData(events: arrGoing[indexPath.section][indexPath.row])
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if arrData[section].isEmpty {
+        if arrGoing[section].isEmpty {
             return 0
         }
         else {
@@ -173,30 +165,18 @@ class EventsCategoryByDate: UITableViewController {
         return view
     }
     
-    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        if offsetY > contentHeight - scrollView.frame.size.height {
-            loadMore()
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let EventsDetailVC = EventsDetailViewController(id: arrData[indexPath.section][indexPath.row].id ?? 1)
+        let EventsDetailVC = EventsDetailViewController(id: arrGoing[indexPath.section][indexPath.row].id ?? 1)
         present(EventsDetailVC, animated: true, completion: nil)
     }
+    
     
     private func registerForCell(){
         self.tableView.register(UINib(nibName: "PopularTableViewCell", bundle: nil), forCellReuseIdentifier: "PopularTableViewCell")
     }
     
-    init(id: Int) {
-        self.id = id
-        super.init(nibName: "EventsCategoryByDate", bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }

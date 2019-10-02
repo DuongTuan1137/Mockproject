@@ -33,7 +33,6 @@ class EventsDetailViewController: UIViewController {
     @IBOutlet weak var labelCategories: UILabel!
     @IBOutlet weak var labelLocation: UILabel!
     @IBOutlet weak var labelContact: UILabel!
-   
     @IBOutlet weak var viewWentButton: UIButton!
     @IBOutlet weak var viewGoingButton: UIButton!
     @IBOutlet weak var viewFollowButton: UIButton!

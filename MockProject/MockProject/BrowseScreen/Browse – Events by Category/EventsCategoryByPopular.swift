@@ -13,6 +13,7 @@ class EventsCategoryByPopular: UITableViewController {
     var pageIndex = 1
     var pageSize = 10
     var arrData = [EventsStruct]()
+    var number : ((Int) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForCell()
@@ -40,8 +41,8 @@ class EventsCategoryByPopular: UITableViewController {
                     self.arrData.sort(by: { (a, b) -> Bool in
                         a.going_count! > b.going_count!
                     })
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Title"), object: self, userInfo: ["Technology": self.arrData.count])
-
+                    self.number?(self.arrData.count)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Po"), object: self, userInfo: ["T1": self.arrData.count])
                 })
                 self.tableView.reloadData()
             }
@@ -71,6 +72,11 @@ class EventsCategoryByPopular: UITableViewController {
         if indexPath.row == arrData.count - 1{
             loadMore()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let eventsDetailVC = EventsDetailViewController(id: arrData[indexPath.row].id ?? 1)
+        present(eventsDetailVC, animated: true, completion: nil)
     }
     
     private func registerForCell(){

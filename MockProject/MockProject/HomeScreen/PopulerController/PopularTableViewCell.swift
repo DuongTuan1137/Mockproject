@@ -38,7 +38,7 @@ class PopularTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
         guard let startDate = dateFormatter.date(from: start) else {return}
-        if startDate < currentDate {
+        if startDate > currentDate {
             dateEvents.text = events.schedule_start_date! + " - \(String(describing: events.going_count!)) người tham gia"
         } else {
             dateEvents.text = events.schedule_end_date! + " - \(String(describing: events.going_count!)) người tham gia"
