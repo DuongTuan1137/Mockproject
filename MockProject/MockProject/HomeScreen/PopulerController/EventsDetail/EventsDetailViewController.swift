@@ -20,6 +20,7 @@ extension UIView {
     }
 }
 
+
 class EventsDetailViewController: UIViewController {
     @IBOutlet weak var navi: UINavigationBar!
     @IBOutlet weak var stackView: UIStackView!

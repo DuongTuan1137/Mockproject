@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct VenueStruct: Codable {
     var name : String
     var contact_address: String
@@ -15,6 +16,14 @@ struct VenueStruct: Codable {
 }
 
 struct Event: Codable {
+    var id: Int
+    var photo: String?
+    var name: String?
+    var description_html: String?
+    var schedule_start_date: String?
+    var schedule_end_date: String?
+    var going_count: Int?
+    var my_status: Int?
     var venue: VenueStruct
 }
 

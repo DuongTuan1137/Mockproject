@@ -17,7 +17,7 @@ class CellNearByEvents: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func setData(events: EventsStruct){
+    func setData(events: Event){
         guard let url = URL(string: events.photo ?? "") else {return}
         do {
             let data =  try Data(contentsOf: url)

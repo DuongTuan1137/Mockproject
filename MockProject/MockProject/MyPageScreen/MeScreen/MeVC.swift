@@ -18,7 +18,13 @@ class MeVC: UIViewController, UIScrollViewDelegate {
         setupScroll()
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
-
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        for i in 0..<scrollView.subviews.count {
+            scrollView.subviews[i].frame = CGRect(x: CGFloat(i) * view.frame.width, y: 0, width: view.frame.width, height: scrollView.frame.height)
+        }
     }
     
     fileprivate func setupScroll() {

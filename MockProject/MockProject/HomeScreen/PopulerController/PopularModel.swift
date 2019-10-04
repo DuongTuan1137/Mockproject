@@ -8,47 +8,22 @@
 
 import Foundation
 import UIKit
-//struct VenuaStruct: Codable {
-//    var id: Int?
-//    var name: String?
-//    var type: Int?
-//    var description: String?
-//    var schedule_openinghour: String?
-//    var schedule_closinghour: String?
-//    var schedule_closed: String?
-//}
-//struct EventsModel: Codable {
-//    var status: Int
-//    var response: ResEvents
-//}
-//struct ResEvents: Codable {
-//    var events: EventsStruct
-//}
+
 
 struct EventsStruct: Codable {
     var id: Int?
-//    var status: Int?
     var photo: String?
     var name: String?
-//    var description_raw: String?
     var description_html: String?
-//    var schedule_permanent: String?
-//    var schedule_date_warning: String?
-//    var schedule_time_alert: String?
     var schedule_start_date: String?
-//    var schedule_start_time: String?
     var schedule_end_date: String?
-//    var schedule_end_time: String?
-//    var schedule_one_day_event: String?
-//    var schedule_extra: String?
     var going_count: Int?
-//    var venua: VenueStr
-//    var category: CategoryStr
 }
 
 struct ResStruct: Codable {
     var events : [EventsStruct]
 }
+
 struct PopularStruct : Codable {
     var status : Int
     var response : ResStruct

@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "CellNearByEvents"
 
 class NearByEventsVC: UICollectionViewController,UICollectionViewDelegateFlowLayout {
-    var eventsNear: [EventsStruct] = []
+    var eventsNear: [Event] = []
     var latitude: String
     var longitude: String
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class NearByEventsVC: UICollectionViewController,UICollectionViewDelegateFlowLay
 
     private func getApi(){
         let api = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNearlyEvents?radius=5000&latitude=\(latitude)&longitue=\(longitude)"
-        getGenericData(urlString: api) { (json: PopularStruct) in
+        getGenericData(urlString: api) { (json: NearStruct) in
             DispatchQueue.main.async {
                 self.eventsNear = json.response.events
                 self.collectionView.reloadData()
@@ -43,7 +43,7 @@ class NearByEventsVC: UICollectionViewController,UICollectionViewDelegateFlowLay
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let eventsVC = EventsDetailViewController(id: eventsNear[indexPath.item].id ?? 1)
+        let eventsVC = EventsDetailViewController(id: eventsNear[indexPath.item].id)
         present(eventsVC, animated: true, completion: nil)
     }
     

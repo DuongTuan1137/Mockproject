@@ -14,28 +14,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var outletPopular: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
 
-    
-    
+    let newsVC = TableViewController(nibName: "TableViewController", bundle: nil)
+    let popularVC = PopularTableViewController(nibName: "PopularTableViewController", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupScroll()
+//        setupScroll()
+        
+        scrollView.isPagingEnabled = true
         scrollView.delegate = self
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.contentSize.width = self.view.frame.width * 2
+        setupScroll()
+    }
+    
     fileprivate func setupScroll() {
-        scrollView.contentSize.width = view.frame.width * 2
-        scrollView.isPagingEnabled = true
-        let newsVC = TableViewController(nibName: "TableViewController", bundle: nil)
+        let width = self.view.frame.width
         addChild(newsVC)
         scrollView.addSubview(newsVC.view)
         newsVC.didMove(toParent: self)
-        newsVC.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: scrollView.frame.height)
-        let popularVC = PopularTableViewController(nibName: "PopularTableViewController", bundle: nil)
+        newsVC.view.frame = CGRect(x: 0, y: 0, width: width, height: scrollView.frame.height)
         addChild(popularVC)
         scrollView.addSubview(popularVC.view)
         popularVC.didMove(toParent: self)
-        popularVC.view.frame = CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: scrollView.frame.height)
+        popularVC.view.frame = CGRect(x: width, y: 0, width: width, height: scrollView.frame.height)
+       
     }
     
     @IBAction func buttonNews(_ sender: UIButton) {
@@ -51,7 +57,7 @@ class ViewController: UIViewController {
         outletNews.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         outletPopular.setTitleColor(#colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1), for: .normal)
         UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
-           self.view1.transform = CGAffineTransform(scaleX: 1.36, y: 1).translatedBy(x: 71, y: 0)
+            self.view1.transform = CGAffineTransform(scaleX: 1.36, y: 1).translatedBy(x: 71, y: 0)
             
         }, completion: nil)
         

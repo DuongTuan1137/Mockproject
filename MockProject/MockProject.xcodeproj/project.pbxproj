@@ -15,6 +15,8 @@
 		3A47F936233B061E0040D02B /* EventsCategoryByPopular.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A47F934233B061E0040D02B /* EventsCategoryByPopular.xib */; };
 		3A47F939233B0F070040D02B /* EventsCategoryByDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A47F937233B0F070040D02B /* EventsCategoryByDate.swift */; };
 		3A47F93A233B0F070040D02B /* EventsCategoryByDate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A47F938233B0F070040D02B /* EventsCategoryByDate.xib */; };
+		3A71012B2344B04600C96D48 /* NearCollectionViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7101292344B04600C96D48 /* NearCollectionViewVC.swift */; };
+		3A71012C2344B04600C96D48 /* NearCollectionViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A71012A2344B04600C96D48 /* NearCollectionViewVC.xib */; };
 		3AAA75D72334B70A00443BE4 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA75D62334B70A00443BE4 /* PostModel.swift */; };
 		3AAA75D92334BBFA00443BE4 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA75D82334BBFA00443BE4 /* PostApi.swift */; };
 		3AAA75DB2334C3CA00443BE4 /* GetApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA75DA2334C3CA00443BE4 /* GetApi.swift */; };
@@ -68,6 +70,8 @@
 		3A47F934233B061E0040D02B /* EventsCategoryByPopular.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsCategoryByPopular.xib; sourceTree = "<group>"; };
 		3A47F937233B0F070040D02B /* EventsCategoryByDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCategoryByDate.swift; sourceTree = "<group>"; };
 		3A47F938233B0F070040D02B /* EventsCategoryByDate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsCategoryByDate.xib; sourceTree = "<group>"; };
+		3A7101292344B04600C96D48 /* NearCollectionViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearCollectionViewVC.swift; sourceTree = "<group>"; };
+		3A71012A2344B04600C96D48 /* NearCollectionViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearCollectionViewVC.xib; sourceTree = "<group>"; };
 		3AAA75D62334B70A00443BE4 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		3AAA75D82334BBFA00443BE4 /* PostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
 		3AAA75DA2334C3CA00443BE4 /* GetApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApi.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 			children = (
 				3A34C4D22333893D006059AC /* NearVC.swift */,
 				3AF920332344334F00DA7ADD /* Venue.swift */,
+				3A7101292344B04600C96D48 /* NearCollectionViewVC.swift */,
+				3A71012A2344B04600C96D48 /* NearCollectionViewVC.xib */,
 			);
 			path = NearScreen;
 			sourceTree = "<group>";
@@ -217,10 +223,10 @@
 				3AFC539F233461090066485B /* User.swift */,
 				3AAA75DC2334C8E700443BE4 /* Call Api */,
 				3A34C4D823338C1E006059AC /* TabBar */,
+				3A199B0E232B9FE200C7E4B6 /* HomeScreen */,
 				3A34C4CF233388DA006059AC /* BrowseScreen */,
 				3A34C4CE233388C0006059AC /* NearScreen */,
 				3AFC64BF2331C21400D8B705 /* Model */,
-				3A199B0E232B9FE200C7E4B6 /* HomeScreen */,
 				3AAC616C23321FF3002504B9 /* MyPageScreen */,
 				3ADFB27C2328D0B50004817E /* AppDelegate.swift */,
 				3ADFB2802328D0B50004817E /* Main.storyboard */,
@@ -393,6 +399,7 @@
 				3A47F936233B061E0040D02B /* EventsCategoryByPopular.xib in Resources */,
 				3AFC64B62331C01200D8B705 /* NearByEventsVC.xib in Resources */,
 				3ADFB29D2328F94A0004817E /* NewsTableViewCell.xib in Resources */,
+				3A71012C2344B04600C96D48 /* NearCollectionViewVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +439,7 @@
 				3A34C4CD233381D7006059AC /* SignUpVC.swift in Sources */,
 				3A47F939233B0F070040D02B /* EventsCategoryByDate.swift in Sources */,
 				3AAA75D92334BBFA00443BE4 /* PostApi.swift in Sources */,
+				3A71012B2344B04600C96D48 /* NearCollectionViewVC.swift in Sources */,
 				3AF9ED432338C59D00B06DA6 /* BrowseTableViewCell.swift in Sources */,
 				3A34C4D12333892C006059AC /* BrowseVC.swift in Sources */,
 				3ADFB29F2328FAE60004817E /* NewModel.swift in Sources */,

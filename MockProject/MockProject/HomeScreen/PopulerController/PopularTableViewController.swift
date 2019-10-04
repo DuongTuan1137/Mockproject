@@ -8,7 +8,7 @@ class PopularTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 300
+        tableView.estimatedRowHeight = 350
         getApi()
         registerForCell()
         refreshControl = UIRefreshControl()

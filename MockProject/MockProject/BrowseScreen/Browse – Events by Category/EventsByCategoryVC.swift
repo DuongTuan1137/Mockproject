@@ -17,12 +17,21 @@ class EventsByCategoryVC: UIViewController {
     var amount : Int?
     var numberPo : Int?
     var numberDate : Int?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = titleCategory
         scrollView.isScrollEnabled = false
-        setupScroll()
+        scrollView.contentSize.width = view.frame.width * 2
         setTitle()
+        setupScroll()
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        for i in 0..<scrollView.subviews.count {
+            scrollView.subviews[i].frame = CGRect(x: CGFloat(i) * view.frame.width, y: 0, width: view.frame.width, height: scrollView.frame.height)
+        }
     }
     
     func setTitle(){
@@ -38,7 +47,7 @@ class EventsByCategoryVC: UIViewController {
     }
     
     fileprivate func setupScroll() {
-        scrollView.contentSize.width = view.frame.width * 2
+        
         let EventsCategory1 = EventsCategoryByPopular(id: categoryId ?? 1)
         addChild(EventsCategory1)
         scrollView.addSubview(EventsCategory1.view)
