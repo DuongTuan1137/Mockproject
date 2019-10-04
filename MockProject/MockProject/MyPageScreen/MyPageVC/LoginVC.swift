@@ -68,13 +68,12 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/login"
+        let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/login"
         postGenericData(urlString: url, parameters: ["email" : emailTF.text, "password": passTF.text]) { (json: ResponseSample) in
             DispatchQueue.main.async {
                 if json.status == 1 {
                     User.instance.token = json.response?.token
                     User.instance.login = true
-                    print(json.response?.token)
                     guard let window = UIApplication.shared.keyWindow else {
                         return
                     }

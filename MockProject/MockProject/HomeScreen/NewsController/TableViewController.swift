@@ -24,7 +24,7 @@ class TableViewController: UITableViewController {
     }
     
     private func getApi(){
-        let api = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNews?pageIndex=\(pageIndex)&pageSize=\(pageSize)"
+        let api = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNews?pageIndex=\(pageIndex)&pageSize=\(pageSize)"
         getGenericData(urlString: api) { (json: JsonStruct ) in
             DispatchQueue.main.async {
                 json.response.news.forEach({ (news) in

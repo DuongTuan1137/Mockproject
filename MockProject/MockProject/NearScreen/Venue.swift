@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Contacts
 
 class Venue: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
@@ -36,6 +37,13 @@ class Venue: NSObject, MKAnnotation {
         let status = json.my_status ?? 0
         let coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
         return Venue(title: title, locationName: locationName, coordinate: coordinate, status: status, id: id)
+    }
+    func mapItem() -> MKMapItem {
+        let addressDictionary = [String(CNPostalAddressStreetKey) : subtitle]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary as [String : Any])
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "\(title ?? "") \(subtitle ?? "")"
+        return mapItem
     }
 }
 

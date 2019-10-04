@@ -50,7 +50,7 @@ class EventsCategoryByDate: UITableViewController {
     }
     
     func getApi() {
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listEventsByCategory?token=\(User.instance.token ?? "")&category_id=\(id)&pageSize=\(pageSize)&pageIndex=\(pageIndex)"
+        let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listEventsByCategory?token=\(User.instance.token ?? "")&category_id=\(id)&pageSize=\(pageSize)&pageIndex=\(pageIndex)"
 //
         getGenericData(urlString: url) { (json: PopularStruct) in
             DispatchQueue.main.async {

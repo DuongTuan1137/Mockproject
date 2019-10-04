@@ -56,7 +56,7 @@ class ForgotPasswordVC: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/resetPassword"
+        let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/resetPassword"
         postGenericData(urlString: url, parameters: ["email" : emailTF.text]) { (json: ResponseSample) in
             DispatchQueue.main.async {
                 if json.status == 1{

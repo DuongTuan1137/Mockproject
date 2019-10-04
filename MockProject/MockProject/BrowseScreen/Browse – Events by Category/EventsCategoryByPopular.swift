@@ -33,7 +33,7 @@ class EventsCategoryByPopular: UITableViewController {
     }
 
     func getApi() {
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listEventsByCategory?token=\(User.instance.token ?? "")&pageIndex=\(pageIndex)&category_id=\(id)&pageSize=\(pageSize)"
+        let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listEventsByCategory?token=\(User.instance.token ?? "")&pageIndex=\(pageIndex)&category_id=\(id)&pageSize=\(pageSize)"
         getGenericData(urlString: url) { (json: PopularStruct) in
             DispatchQueue.main.async {
                 json.response.events.forEach({ (event) in

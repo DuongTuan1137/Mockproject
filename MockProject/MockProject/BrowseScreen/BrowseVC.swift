@@ -19,7 +19,7 @@ class BrowseVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     }
     
     private func getData(){
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listCategories?pageIndex=1&pageSize=10"
+        let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listCategories?pageIndex=1&pageSize=10"
         getGenericData(urlString: url) { (json : BrowseModel) in
             DispatchQueue.main.async {
                  self.categories = json.response.categories

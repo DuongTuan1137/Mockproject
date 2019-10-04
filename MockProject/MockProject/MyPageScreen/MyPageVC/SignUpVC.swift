@@ -68,7 +68,7 @@ class SignUpVC: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func signupButton(_ sender: UIButton) {
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/register"
+        let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/register"
         postGenericData(urlString: url, parameters: ["name" : nameTF.text, "email" : emailTF.text, "password": passwordTF.text]) { (json: ResponseSample) in
             DispatchQueue.main.async {
                 if json.status == 1 {

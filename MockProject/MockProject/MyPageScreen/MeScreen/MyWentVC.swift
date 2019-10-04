@@ -51,7 +51,7 @@ class MyWentVC: UITableViewController {
     }
     
     func getApi(){
-        let url = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listMyEvents?status=\(status)&token=\(User.instance.token ?? "")"
+        let url = "https://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listMyEvents?status=\(status)&token=\(User.instance.token ?? "")"
         getGenericData(urlString: url) { (json: PopularStruct) in
             json.response.events.forEach({ (event) in
                 self.setupData(event: event)

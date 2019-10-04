@@ -24,7 +24,7 @@ class SearchVC: UIViewController {
     }
     
     fileprivate func getApi(_ textField: UITextField) {
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/search?token=\(User.instance.token ?? "" )&keyword=\(textField.text ?? "")&pageIndex=\(pageIndex)&pageSize=20"
+        let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/search?token=\(User.instance.token ?? "" )&keyword=\(textField.text ?? "")&pageIndex=\(pageIndex)&pageSize=20"
         getGenericData(urlString: url) { (json: PopularStruct) in
             DispatchQueue.main.async {
                 json.response.events.forEach({ (event) in

@@ -47,7 +47,7 @@ class NearVC: UIViewController {
     }
     
     func getApi() {
-        let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNearlyEvents?token=\(User.instance.token ?? "")&radius=\(radius)&latitude=\(lat)&longitue=\(long)"
+        let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNearlyEvents?token=\(User.instance.token ?? "")&radius=\(radius)&latitude=\(lat)&longitue=\(long)"
         getGenericData(urlString: url) { (json : NearStruct) in
             DispatchQueue.main.async {
                 self.events = json.response.events
@@ -62,7 +62,7 @@ class NearVC: UIViewController {
     }
     
     func zoomMapOn(location : CLLocation) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: radius, longitudinalMeters: radius)
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: radius * 2, longitudinalMeters: radius * 2)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
@@ -93,9 +93,19 @@ extension NearVC: MKMapViewDelegate {
             annotationView.pinTintColor = .red
         default:
             annotationView.pinTintColor = .yellow
-        }        
+        }
+        annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
         annotationView.canShowCallout = true
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if view.annotation is MKUserLocation {
+            return
+        }
+        let location = view.annotation as! Venue
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        location.mapItem().openInMaps(launchOptions: launchOptions)
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -126,7 +136,7 @@ extension NearVC: MKMapViewDelegate {
             venues.removeAll()
             events.removeAll()
             mapView.removeAnnotations(mapView.annotations)
-            mapView.setRegion(MKCoordinateRegion(center: center.coordinate, latitudinalMeters: radius, longitudinalMeters: radius), animated: true)
+            mapView.setRegion(MKCoordinateRegion(center: center.coordinate, latitudinalMeters: radius * 2, longitudinalMeters: radius * 2), animated: true)
             getApi()
         }
     }
@@ -135,26 +145,29 @@ extension NearVC: MKMapViewDelegate {
 extension NearVC: CLLocationManagerDelegate {
     func checkLocationService(){
         locationManager.delegate = self
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            mapView.showsUserLocation = true
-        } else {
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        let locationAuthorizationStatus = CLLocationManager.authorizationStatus()
+        switch locationAuthorizationStatus {
+        case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+        case .authorizedWhenInUse, .authorizedAlways:
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.startUpdatingLocation()
+            }
+        case.restricted, .denied:
+            let arlert = UIAlertController(title: "", message: "Xin hãy cấp quyền sử dụng location để có thể trải nghiệm chức năng này", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let setting = UIAlertAction(title: "Setting", style: .default) { (a) in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            }
+            arlert.addAction(cancel)
+            arlert.addAction(setting)
+            present(arlert, animated: true, completion: nil)
             locationManager.startUpdatingLocation()
+        @unknown default:
+            break
         }
-//        } else {
-//                    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-//                        mapView.showsUserLocation = true
-//                    } else {
-//                        let arlert = UIAlertController(title: "", message: "Xin hãy cấp quyền sử dụng location để có thể trải nghiệm chức năng này", preferredStyle: .alert)
-//                        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//                        let setting = UIAlertAction(title: "Setting", style: .default) { (a) in
-//                                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-//                        }
-//                        arlert.addAction(cancel)
-//                        arlert.addAction(setting)
-//                        present(arlert, animated: true, completion: nil)
-//
-//                    }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

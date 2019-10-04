@@ -22,7 +22,7 @@ class NearByEventsVC: UICollectionViewController,UICollectionViewDelegateFlowLay
     }
 
     private func getApi(){
-        let api = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNearlyEvents?radius=5000&latitude=\(latitude)&longitue=\(longitude)"
+        let api = "https://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/listNearlyEvents?radius=5000&latitude=\(latitude)&longitue=\(longitude)"
         getGenericData(urlString: api) { (json: NearStruct) in
             DispatchQueue.main.async {
                 self.eventsNear = json.response.events

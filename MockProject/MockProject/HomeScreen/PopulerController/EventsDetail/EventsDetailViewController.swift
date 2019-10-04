@@ -59,7 +59,7 @@ class EventsDetailViewController: UIViewController {
     
     
     func getApi() {
-        let api = "https://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/getDetailEvent?token=\(User.instance.token ?? "")&event_id=\(id)"
+        let api = "https://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/getDetailEvent?token=\(User.instance.token ?? "")&event_id=\(id)"
         getGenericData(urlString: api) { (json: EventsModel) in
             DispatchQueue.main.async {
                 self.events = json.response.events
@@ -165,7 +165,7 @@ class EventsDetailViewController: UIViewController {
             let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
             present(loginVC, animated: true, completion: nil)
         } else{
-            let urlString = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doFollowVenue"
+            let urlString = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doFollowVenue"
             postGenericData(urlString: urlString, parameters: ["token": User.instance.token, "venue_id": events?.id]) { (json: ResponseSample) in
                 DispatchQueue.main.async {
                     if json.status == 1 {
@@ -187,7 +187,7 @@ class EventsDetailViewController: UIViewController {
             let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
             present(loginVC, animated: true, completion: nil)
         } else{
-            let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doUpdateEvent"
+            let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doUpdateEvent"
             postGenericData(urlString: url, parameters: ["token": User.instance.token, "status": 1, "event_id": events?.id]) { (json: ResponseSample) in
                 DispatchQueue.main.async {
                     self.viewGoingButton.backgroundColor = .red
@@ -205,7 +205,7 @@ class EventsDetailViewController: UIViewController {
             let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
             present(loginVC, animated: true, completion: nil)
         } else{
-            let url = "http://812f8957.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doUpdateEvent"
+            let url = "http://f1fa6ab5.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/doUpdateEvent"
             postGenericData(urlString: url, parameters: ["token": User.instance.token, "status": 2, "event_id": events?.id]) { (json: ResponseSample) in
                 DispatchQueue.main.async {
                     self.viewWentButton.backgroundColor = .yellow
